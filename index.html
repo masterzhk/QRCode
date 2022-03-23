@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>乘车码</title>
+    <script type="text/javascript" src="scripts/qrcode.min.js"></script>
+</head>
+
+<body>
+    <div id="qrcode"></div>
+    <script type="text/javascript">
+        const info = { workerNo: "M617", time: Date.now() };
+        const result = /workerNo=(\w+)/.exec(window.location.search);
+        if (result && result.length === 2) {
+            info.workerNo = result[1];
+        }
+        const qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: JSON.stringify(info),
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.L
+        });
+    </script>
+</body>
+
+</html>
